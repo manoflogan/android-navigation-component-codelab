@@ -1,17 +1,18 @@
 package com.krishnanand.navigationcomponeent
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 
 class MainActivity : AppCompatActivity() {
+
+    val toolbar: Toolbar by lazy {
+        findViewById(R.id.toolbar)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(toolbar)
     }
 }
