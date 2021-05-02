@@ -9,14 +9,19 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val toolbar: Toolbar by lazy {
         findViewById(R.id.toolbar)
     }
+
+    lateinit var appBarConfiguration: AppBarConfiguration
 
     lateinit var navController: NavController
 
@@ -27,8 +32,14 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as  NavHostFragment
         navController = navHostFragment.findNavController()
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.mainFragment, R.id.searchFragment)
+        )
         setSupportActionBar(toolbar)
-        setupActionBarWithNavController(navController)
+        with(navController) {
+            setupActionBarWithNavController(this, appBarConfiguration)
+            bottom_nav.setupWithNavController(this)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean = navController.navigateUp() || super.onSupportNavigateUp()
