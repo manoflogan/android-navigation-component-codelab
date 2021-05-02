@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+         when(item.itemId) {
             R.id.termsAndConditions -> {
                 with(NavGraphDirections.actionGlobalTermsAndConditionsFragment()) {
                     navController.navigate(this)
@@ -47,7 +47,5 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             else ->  item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-        }
-
-    }
+         }
 }
